@@ -5,7 +5,7 @@ import pandas as pd
 
 import sys
 
-ccnum = 0 ;
+ccnum = "0" ;
 print(f"Arguments count: {len(sys.argv)}")
 for i, arg in enumerate(sys.argv):
 	print(f"Argument {i:>6}: {arg}")
@@ -33,12 +33,16 @@ cs2 = ["#f7fbff",
               "#08306b"]
 print(f"ccnum: {ccnum}")
 
-if(ccnum == 0):
+if(ccnum == "0"):
 	ccscl = cs0
-elif(ccnum == 1):
+elif(ccnum == "1"):
 	ccscl = cs1
 else:
 	ccscl = cs2
+
+
+
+print(f"len(ccscl):  {len(ccscl)}" )
 
 endpts = list(np.linspace(1, 1000, len(ccscl) - 1))
 
