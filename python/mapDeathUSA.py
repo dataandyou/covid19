@@ -3,9 +3,10 @@ import plotly.figure_factory as ff
 import numpy as np
 import pandas as pd
 
-df_sample = pd.read_csv('/Users/sandippal/Documents/time_series_covid19_confirmed_US.csv')
+df_sample = pd.read_csv('../data/time_series_covid19_deaths_US.csv')
 
-values = df_sample['APM'].tolist()
+population = df_sample['Population'].tolist()
+values = df_sample['6/3/20'].tolist()
 fips = df_sample['FIPS'].tolist()
 
 
@@ -20,16 +21,16 @@ colorscale = ["#f7fbff",
               "#85bcdb","#1361a9",
               "#08306b"]
 
-endpts = list(np.linspace(1, 20000, len(colorscale) - 1))
+endpts = list(np.linspace(1, 2000, len(colorscale) - 1))
 
 fig = ff.create_choropleth(
     fips=fips, values=values, show_state_data=True,
     colorscale=colorscale, binning_endpoints=endpts,
     asp=2.9,
     paper_bgcolor='rgb(229,229,229)',
-    title ='USA infected rate per million',
+    title ='USA death numbers',
     show_hover=True, 
-    legend_title='Affected per million',
+    legend_title='Deaths',
     county_outline={'color': 'rgb(224,224,224)', 'width': 0.5}
 )
 fig.layout.template = None
