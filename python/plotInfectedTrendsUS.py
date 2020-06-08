@@ -13,10 +13,12 @@ import pandas as pd
 
 key_name = 'San Luis Obispo, California, US'
 
-
 df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv', index_col="Combined_Key")
 
+
 lastDays=20 # Trend for the last how many days
+
+print(df_sample)
 
 oneRow = df_sample.loc[key_name]
 #Debug prints
