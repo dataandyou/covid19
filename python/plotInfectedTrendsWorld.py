@@ -1,5 +1,5 @@
 # Plotting trends on infections 
-# Author : Sandip Pal & 
+# Author : Sandip Pal  
 # Start Date: 06/06/2020
 # How to use this script: TBD
 
@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-key_name = 'India'
+key_name = 'Singapore'
 
 
 df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv', index_col="Country/Region")
@@ -19,7 +19,7 @@ df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_cov
 lastDays=20 # Trend for the last how many days
 
 #Debug prints
-print(df_sample)
+#print(df_sample)
 
 oneRow = df_sample.loc[key_name]
 #Debug prints
@@ -27,8 +27,7 @@ print(oneRow.index[len(oneRow)-lastDays:])
 print(oneRow.values[len(oneRow)-lastDays:])
 
 
-plt.figure(figsize=(32, 8))
-
+plt.figure(figsize=(24, 8))
 plt.plot(oneRow.index[len(oneRow)-lastDays:], oneRow.values[len(oneRow)-lastDays:], 'bo-')
 plt.xlabel(f'Last {lastDays} days')
 plt.ylabel(key_name)
