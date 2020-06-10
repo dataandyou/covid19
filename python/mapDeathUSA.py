@@ -4,10 +4,11 @@ import numpy as np
 import pandas as pd
 
 
-date_str = '4/3/20'
+date_str = '6/7/20'
 
-df_sample = pd.read_csv('../data/time_series_covid19_deaths_US.csv')
+df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv')
 
+df_sample.dropna(subset=['FIPS'], inplace=True)
 population = df_sample['Population'].tolist()
 values = df_sample[date_str].tolist()
 fips = df_sample['FIPS'].tolist()
@@ -31,7 +32,7 @@ fig = ff.create_choropleth(
     colorscale=colorscale, binning_endpoints=endpts,
     asp=2.9,
     paper_bgcolor='rgb(229,229,229)',
-    title ='USA death numbers',
+    title ='USA death numbers per county',
     show_hover=True, centroid_marker={'opacity': 0},
     legend_title='Deaths',
     county_outline={'color': 'rgb(224,224,224)', 'width': 0.5}
