@@ -8,10 +8,11 @@
 import plotly.figure_factory as ff
 
 import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt1
 import numpy as np
 import pandas as pd
 
-key_name = 'New Zealand'
+key_name = 'India'
 
 
 df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv', index_col="Country/Region")
@@ -26,6 +27,7 @@ oneRow = df_sample.loc[key_name]
 print(oneRow.index[len(oneRow)-lastDays:])
 print(oneRow.values[len(oneRow)-lastDays:])
 
+res = [oneRow.values[i + 1] - oneRow.values[i] for i in range(len(oneRow.values)-1)] 
 
 plt.figure(figsize=(24, 8))
 plt.plot(oneRow.index[len(oneRow)-lastDays:], oneRow.values[len(oneRow)-lastDays:], 'bo-')
@@ -46,4 +48,24 @@ for x,y in zip(oneRow.index[len(oneRow)-lastDays:],oneRow.values[len(oneRow)-las
 
 
 plt.show()
+
+plt1.figure(figsize=(24, 8))
+plt1.bar(oneRow.index[len(oneRow)-lastDays:], res[len(res)-lastDays:])
+plt1.xlabel(f'Last {lastDays} days')
+plt1.ylabel(key_name)
+
+# zip joins x and y coordinates in pairs
+for x,y in zip(oneRow.index[len(oneRow)-lastDays:],  res[len(res)-lastDays:]):
+
+    label = "{:.2f}".format(y)
+
+    plt1.annotate(label, # this is the text
+                 (x,y), # this is the point to label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+
+
+plt1.show()
 
