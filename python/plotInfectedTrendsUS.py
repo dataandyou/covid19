@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-key_name = 'Shasta, California, US'
+key_name = 'Alameda, California, US'
 
 df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv', index_col="Combined_Key")
 
@@ -29,7 +29,7 @@ print(oneRow.values[len(oneRow)-lastDays:])
 
 plt.figure(figsize=(32, 8))
 
-plt.plot(oneRow.index[len(oneRow)-lastDays:], oneRow.values[len(oneRow)-lastDays:], 'bo-')
+plt.bar(oneRow.index[len(oneRow)-lastDays:], oneRow.values[len(oneRow)-lastDays:])
 plt.xlabel(f'Last {lastDays}')
 plt.ylabel(key_name)
 
