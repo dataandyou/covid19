@@ -23,10 +23,22 @@ lastDays=20 # Trend for the last how many days
 #print(df_sample)
 
 oneRow = df_sample.loc[key_name]
+
 #Debug prints
+print(oneRow.shape[0])
+#print(oneRow.sum(axis='rows'))
+#if oneRow.shape[0] > 1 :
+#	oneRow = oneRow.sum(axis='rows')
+
+print("After Row transform")
+print(oneRow)
+
 print(oneRow.index[len(oneRow)-lastDays:])
 print(oneRow.values[len(oneRow)-lastDays:])
 
+print(type(oneRow.values[len(oneRow) -1]) )
+
+print("Now calculate diff from cumulative")
 res = [oneRow.values[i + 1] - oneRow.values[i] for i in range(len(oneRow.values)-1)] 
 
 plt.figure(figsize=(24, 8))
