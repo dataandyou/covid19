@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt1
 import numpy as np
 import pandas as pd
+import sys
 
 key_name = 'India'
 
@@ -18,6 +19,15 @@ key_name = 'India'
 df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv', index_col="Country/Region")
 
 lastDays=20 # Trend for the last how many days
+
+print(f"Arguments count: {len(sys.argv)}")
+for i, arg in enumerate(sys.argv):
+        print(f"Argument {i:>6}: {arg}")
+        if(i == 1):
+                key_name = sys.argv[i]
+        if(i == 2):
+                lastDays = int(sys.argv[i])
+
 
 #Debug prints
 #print(df_sample)
@@ -61,7 +71,6 @@ for x,y in zip(oneRow.index[len(oneRow)-lastDays:],oneRow.values[len(oneRow)-las
 
 
 
-#plt.figure(figsize=(24, 8))
 plt.subplot(132)
 plt.bar(oneRow.index[len(oneRow)-lastDays:], res[len(res)-lastDays:])
 plt.xlabel(f'Last {lastDays} days')
