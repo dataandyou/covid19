@@ -6,16 +6,16 @@
 
 
 import plotly.figure_factory as ff
-
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt1
 import numpy as np
 import pandas as pd
 import sys
 
-key_name = 'India'
+key_name = 'San Mateo, California, US'
 
-df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv', index_col="Country/Region")
+
+df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv', index_col="Combined_Key")
 
 lastDays=20 # Trend for the last how many days
 
@@ -35,12 +35,11 @@ oneRow = df_sample.loc[key_name]
 
 #Debug prints
 print(oneRow.shape[0])
-#print(oneRow.sum(axis='rows'))
-#if oneRow.shape[0] > 1 :
-#	oneRow = oneRow.sum(axis='rows')
 
 print("After Row transform")
 print(oneRow)
+
+
 
 print("Index vals =")
 print(oneRow.index[len(oneRow)-lastDays:])
@@ -50,8 +49,9 @@ print(oneRow.values[len(oneRow)-lastDays:])
 
 print(type(oneRow.values[len(oneRow) -1]) )
 
+
 print("Now calculate diff from cumulative")
-res = [oneRow.values[i + 1] - oneRow.values[i] for i in range(len(oneRow.values)-1)] 
+res = [oneRow.values[i + 1] - oneRow.values[i] for i in range(8, len(oneRow.values)-1)]
 
 plt.figure(figsize=(24, 8))
 plt.subplot(131)
@@ -67,6 +67,7 @@ for x,y in zip(oneRow.index[len(oneRow)-lastDays:],oneRow.values[len(oneRow)-las
     plt.annotate(label, # this is the text
                  (x,y), # this is the point to label
                  textcoords="offset points", # how to position the text
+                 rotation="vertical",
                  xytext=(0,10), # distance from text to points (x,y)
                  ha='center') # horizontal alignment can be left, right or center
 
