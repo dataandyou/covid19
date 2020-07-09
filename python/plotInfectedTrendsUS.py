@@ -60,6 +60,5 @@ for x,y in zip(oneRow.index[len(oneRow)-lastDays:],oneRow.values[len(oneRow)-las
                  ha='center') # horizontal alignment can be left, right or center
 
 
-
 plt.show()
 
