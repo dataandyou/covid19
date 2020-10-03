@@ -13,13 +13,27 @@ for i, arg in enumerate(sys.argv):
 		ccnum = sys.argv[i]
 
 
-df_sample = pd.read_csv('../data/time_series_covid19_deaths_US.csv')
+df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv')
+df_sample.dropna(subset=['FIPS'], inplace=True)
+df_sample = df_sample[df_sample.Population != 0]
 
+
+df_lookup = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/UID_ISO_FIPS_LookUp_Table.csv', index_col='Combined_Key' )
+df_lookup.dropna(subset=['FIPS'], inplace=True)
+
+fips_lut  = df_lookup['FIPS'].tolist()
+
+
+values = df_sample['10/1/20'].tolist()
+fips   = df_sample['FIPS'].tolist()
 population = df_sample['Population'].tolist()
-values = df_sample['6/3/20'].tolist()
-fips = df_sample['FIPS'].tolist()
 
-valpm = [i* 1000000 / j for i, j in zip(values, population)]
+
+
+valpm = [i* 1000000 / j for i, j in zip(values, population )]
+
+
+
 
 cs0 = ["#f7fbff","#ebf3fb","#deebf7","#d2e3f3","#c6dbef","#b3d2e9","#9ecae1",
               "#85bcdb","#6baed6","#57a0ce","#4292c6","#3082be","#2171b5","#1361a9",
