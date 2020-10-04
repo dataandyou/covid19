@@ -17,7 +17,7 @@ df_sample = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/csse_cov
 df_sample.dropna(subset=['FIPS'], inplace=True)
 df_sample = df_sample[df_sample.Population != 0]
 
-
+# Lookup not used now. Will use later
 df_lookup = pd.read_csv('../data/csejhudump/COVID-19/csse_covid_19_data/UID_ISO_FIPS_LookUp_Table.csv', index_col='Combined_Key' )
 df_lookup.dropna(subset=['FIPS'], inplace=True)
 
